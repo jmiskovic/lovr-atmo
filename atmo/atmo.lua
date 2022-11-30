@@ -119,6 +119,7 @@ Constants {
     float sun_intensity;
     float haze;
     vec3 hue;
+    float gamma_correction;
     float sun_sharpness;
 };
 
@@ -145,6 +146,7 @@ vec4 lovrmain() {
     );
     // Apply exposure
     color = 1.0 - exp(-1. * color);
+    color = pow(color, vec3(gamma_correction));
     return vec4(color, Color.a);
 }
 ]])
@@ -155,6 +157,7 @@ m.gpu = {
   sun_intensity = 40,
   sun_sharpness = 0.95,
   sun_position = lovr.math.newVec3(1, 1, -1),
+  gamma_correction = 2.2,
   hue = lovr.math.newVec3(0.2, 0.6, 1.0),
 }
 
