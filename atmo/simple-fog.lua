@@ -14,7 +14,7 @@ Constants {
 
 vec4 lovrmain() {
   vec4 surface = (flag_colorTexture ? (Color * getPixel(ColorTexture, UV)) : Color);
-  float fogAmount = 1.f - exp(-length(PositionView) * 0.01);
+  float fogAmount = 1.f - exp(-length(PositionView) * 0.001);
   return vec4(mix(surface.rgb, FogColor, fogAmount), surface.a);
 }
 ]])
